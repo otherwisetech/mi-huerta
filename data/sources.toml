@@ -1,0 +1,119 @@
+# Fuentes del catálogo de Mi Huerta.
+# Cada número de catalog.toml cita una de estas fuentes; todas fueron abiertas y leídas.
+schema = 1
+
+[[source]]
+id = "unal-agrocol-pisos-2026"
+publisher = "Universidad Nacional de Colombia (revista Agronomía Colombiana)"
+title = "Climate change-driven shifts in temperature and precipitation across elevation gradients in Colombia: Implications for agroclimatic zoning of high-value fruit crops"
+year = 2026
+url = "https://revistas.unal.edu.co/index.php/agrocol/article/view/121343"
+
+[[source]]
+id = "ufifas-vh021-vegetable-guide"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Florida Vegetable Gardening Guide (SP 103 / VH021)"
+year = 2025
+url = "https://ask.ifas.ufl.edu/publication/VH021/pdf"
+
+[[source]]
+id = "fao-huertos-urbanos-honduras"
+publisher = "FAO"
+title = "Prácticas para la producción de huertos familiares urbanos: preparación de sustrato, los cultivos del huerto"
+year = 2011
+url = "https://www.fao.org/3/a-as163s.pdf"
+
+[[source]]
+id = "ncsu-crop-guide-cilantro"
+publisher = "NC State University, Plants for Human Health Institute"
+title = "Crop Guide – Cilantro"
+url = "https://stem.plantsforhumanhealth.ncsu.edu/school-gardens/crop-guides/crop-guide-cilantro/"
+
+[[source]]
+id = "ufifas-gs-ginger"
+publisher = "UF/IFAS Gardening Solutions (University of Florida)"
+title = "Ginger – Gardening Solutions"
+url = "https://gardeningsolutions.ifas.ufl.edu/plants/edibles/vegetables/ginger/"
+
+[[source]]
+id = "ufifas-gs-roses"
+publisher = "UF/IFAS Gardening Solutions (University of Florida)"
+title = "Roses – Gardening Solutions"
+url = "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/roses/"
+
+[[source]]
+id = "ucipm-kikuyu-tips"
+publisher = "UC Statewide IPM Program, UC ANR (University of California)"
+title = "Healthy Lawns—Kikuyugrass: Management tips"
+url = "https://ipm.ucanr.edu/TOOLS/TURF/TURFSPECIES/kikuyutips.html"
+
+
+[[source]]
+id = "ufifas-mg054-papaya"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Papaya Growing in the Florida Home Landscape (HS11 / MG054)"
+year = 2016
+url = "https://ask.ifas.ufl.edu/publication/MG054/pdf"
+
+[[source]]
+id = "ufifas-mg040-banana"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Banana Growing in the Florida Home Landscape (HS10 / MG040)"
+year = 2016
+url = "https://ask.ifas.ufl.edu/publication/MG040/pdf"
+
+[[source]]
+id = "ufifas-mg213-avocado"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Avocado Growing in the Florida Home Landscape (CIR 1034 / MG213)"
+year = 2016
+url = "https://ask.ifas.ufl.edu/publication/MG213/pdf"
+
+[[source]]
+id = "ufifas-mg216-mango"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Mango Growing in the Florida Home Landscape (HS2 / MG216)"
+year = 2023
+url = "https://ask.ifas.ufl.edu/publication/MG216/pdf"
+
+[[source]]
+id = "ufifas-mg045-guava"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Guava Growing in the Florida Home Landscape (HS4 / MG045)"
+year = 2016
+url = "https://ask.ifas.ufl.edu/publication/MG045/pdf"
+
+[[source]]
+id = "ufifas-hs867-citrus"
+publisher = "UF/IFAS Extension (University of Florida)"
+title = "Citrus Culture in the Home Landscape (HS-867)"
+year = 2007
+url = "https://ask.ifas.ufl.edu/publication/HS132/pdf"
+
+[[source]]
+id = "ica-maracuya-invernal-2011"
+publisher = "ICA (Instituto Colombiano Agropecuario)"
+title = "El cultivo de Maracuyá (Passiflora edulis) en temporada invernal"
+year = 2011
+url = "https://www.ica.gov.co/getattachment/a814b577-c0c0-4369-8ecd-4f01f971cf99/El-cultivo-de-maracuya-entemporada-invernal.aspx"
+
+[[source]]
+id = "ica-granadilla-invernal-2011"
+publisher = "ICA (Instituto Colombiano Agropecuario)"
+title = "Manejo fitosanitario del cultivo de la granadilla (Passiflora ligularis) - Medidas para la temporada invernal"
+year = 2011
+url = "https://www.ica.gov.co/getattachment/ee408b8b-fd44-4cca-bf0b-44b6c34972e9/-"
+
+[[source]]
+id = "ica-guayaba-invernal-2012"
+publisher = "ICA (Instituto Colombiano Agropecuario)"
+title = "Manejo fitosanitario del cultivo de guayaba (Psidium guajava, L.). Medidas para la temporada invernal"
+year = 2012
+url = "https://www.ica.gov.co/getattachment/00295b79-bcb0-4ab2-80f9-b6e3ab7218b8/-nbsp;Manejo-fitosanitario-del-cultivo-de-guayaba.aspx"
+
+[[source]]
+id = "corpoica-lulo-2018"
+publisher = "Corpoica (hoy Agrosavia), revista Ciencia y Tecnología Agropecuaria"
+title = "Evaluación de la resistencia de un híbrido F1 de Solanum quitoense Lam. a Neoleucinodes elegantalis (Guenée) y Meloidogyne incognita"
+year = 2018
+url = "https://www.redalyc.org/journal/4499/449955961009/449955961009.pdf"

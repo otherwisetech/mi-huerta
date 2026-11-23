@@ -1,0 +1,24 @@
+[package]
+name = "mi-huerta-cli"
+description = "Mi Huerta's headless command line: MCP server, Otherwise Helper jobs, calendar feed"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+name = "mi_huerta_cli"
+
+[[bin]]
+name = "mi-huerta-cli"
+path = "src/main.rs"
+
+[dependencies]
+i18n.workspace = true
+huerta.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+otherwise-link.workspace = true

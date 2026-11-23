@@ -1,0 +1,12 @@
+[package]
+name = "mi-huerta-i18n"
+description = "Embedded translation catalogs (es, en, pt, fr) for Mi Huerta"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+name = "i18n"
