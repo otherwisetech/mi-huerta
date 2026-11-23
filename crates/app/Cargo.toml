@@ -1,0 +1,33 @@
+[package]
+name = "mi-huerta-app"
+description = "Mi Huerta: look after your home garden (desktop app)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[[bin]]
+name = "mi-huerta"
+path = "src/main.rs"
+
+[dependencies]
+i18n.workspace = true
+huerta.workspace = true
+mi-huerta-cli.workspace = true
+anyhow.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+otherwise-link.workspace = true
+otherwise-agent-panel.workspace = true
+gpui.workspace = true
+gpui_platform.workspace = true
+gpui-component.workspace = true
+gpui-component-assets.workspace = true
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc = "0.2.7"

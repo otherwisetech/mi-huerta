@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Mi Huerta
+Comment=Cuida tu huerta en casa
+Exec=mi-huerta %u
+Icon=mi-huerta
+Terminal=false
+Categories=Utility;
+MimeType=x-scheme-handler/otherwise-mi-huerta;

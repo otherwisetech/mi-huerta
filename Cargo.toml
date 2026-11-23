@@ -1,0 +1,43 @@
+[workspace]
+resolver = "2"
+members = ["crates/i18n", "crates/core", "crates/cli", "crates/app"]
+# Plain `cargo test` / `cargo build` stay off the GPUI stack; the app is built with `-p`.
+default-members = ["crates/i18n", "crates/core", "crates/cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/otherwisetech/mi-huerta"
+
+[workspace.dependencies]
+i18n = { path = "crates/i18n", package = "mi-huerta-i18n" }
+huerta = { path = "crates/core", package = "mi-huerta-core" }
+mi-huerta-cli = { path = "crates/cli" }
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = { version = "0.8", default-features = false, features = ["parse"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std", "serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+# data root, locks, cloud-safe moves, calendar feed, background jobs, app discovery (MIT/Apache)
+otherwise-link = { git = "https://github.com/otherwisetech/otherwise-link", tag = "v0.5.1" }
+# the AI panel (⌘J): the user's own Claude Code / Codex / opencode (MIT/Apache)
+otherwise-agent-panel = { git = "https://github.com/otherwisetech/otherwise-agent-panel", tag = "v0.1.0" }
+# GPUI stack, same as otherwise-apps. Git deps move: Cargo.lock pins the revs
+# (zed eb5483528be6…, gpui-component 972a3ebfd01a…). Never `cargo update` them.
+gpui = { git = "https://github.com/zed-industries/zed" }
+gpui_platform = { git = "https://github.com/zed-industries/zed", features = ["font-kit"] }
+gpui-component = { git = "https://github.com/longbridge/gpui-component" }
+gpui-component-assets = { git = "https://github.com/longbridge/gpui-component" }
+
+[profile.dev]
+opt-level = 1
+# GPUI with debuginfo is ~10 GB of target/; keep it lean
+debug = 0
+[profile.dev.package."*"]
+opt-level = 2
+
+[profile.release]
+lto = "thin"

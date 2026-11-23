@@ -1,0 +1,974 @@
+# Catálogo de cuidados de Mi Huerta.
+# Regla: cada número cita una fuente de sources.toml que fue abierta y leída.
+# Donde no hay un número publicado, va una pista (`hints`) en lugar de inventarlo.
+# Conversiones usadas (aritmética, no estimación): 1 mes = 30 días, 1 año = 365 días,
+# 1 pulgada = 2,54 cm, "dos veces por semana" = cada 3 días.
+schema = 1
+
+# Pisos térmicos colombianos (la fuente da solo altitudes; llama "medio" al templado)
+[climates]
+source = "unal-agrocol-pisos-2026"
+ref = "Resumen / Abstract: macroclimas por altitud"
+calido = { min_m = 0, max_m = 1000, note = "Piso cálido (warm)" }
+templado = { min_m = 1001, max_m = 2000, note = "La fuente lo llama clima medio (medium)" }
+frio = { min_m = 2001, max_m = 3000, note = "Piso frío (cold)" }
+
+# ───────────────────────────── ORIGINALES ─────────────────────────────
+
+[[plant]]
+id = "tomate"
+kind = "hortaliza"
+scientific = "Solanum lycopersicum"
+es = "Tomate"
+en = "Tomato"
+pt = "Tomate"
+fr = "Tomate"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 70
+to_days = 90
+from = "trasplante"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 8: Tomatoes (supported), Days to Harvest (70–90) desde trasplante"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca al tacto. Mejor riego parejo y al pie: los cambios bruscos rajan los frutos."
+fertilize = "Abona con compost al sembrar y dale 2 o 3 abonadas ligeras mientras crece, alrededor de la planta y no pegado al tallo."
+prune = "Quita los chupones que salen entre el tallo y las hojas, y las hojas de abajo que se pongan amarillas."
+harvest = "Cosecha cuando el fruto tenga buen color y ceda un poquito al apretarlo."
+
+[[plant]]
+id = "limoncillo"
+kind = "aromatica"
+scientific = "Cymbopogon citratus"
+es = "Limoncillo"
+en = "Lemongrass"
+pt = "Capim-limão"
+fr = "Citronnelle"
+places = ["matera", "huerta", "jardin"]
+
+[plant.hints]
+water = "Le gusta la tierra húmeda pero no encharcada. Riega cuando la superficie esté seca; en matera revisa más seguido."
+fertilize = "Un poco de compost al pie cada cierto tiempo basta. Si las hojas se ponen pálidas, es hora de abonar."
+prune = "Corta las hojas secas y, cuando la mata esté muy grande, divídela y siembra los hijos aparte."
+harvest = "Corta tallos u hojas cuando la mata esté bien formada; saca los tallos de afuera para que siga creciendo."
+
+[[plant]]
+id = "cilantro"
+kind = "aromatica"
+scientific = "Coriandrum sativum"
+es = "Cilantro"
+en = "Coriander"
+pt = "Coentro"
+fr = "Coriandre"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 45
+to_days = 70
+from = "siembra"
+source = "ncsu-crop-guide-cilantro"
+ref = "Harvest: hojas 45–70 días desde la siembra"
+
+[plant.hints]
+water = "Mantén la tierra apenas húmeda; riega cuando la superficie se sienta seca. Con calor y sequía se espiga rápido."
+fertilize = "Siembra en tierra con compost y casi no necesita más abono; un poquito de compost si se ve pálido."
+prune = "Corta las flores apenas salgan si quieres más hojas, o déjalas si quieres semilla (coriandro)."
+harvest = "Siembra un poquito cada pocas semanas para tener cilantro siempre."
+
+[[plant]]
+id = "albahaca"
+kind = "aromatica"
+scientific = "Ocimum basilicum"
+es = "Albahaca"
+en = "Basil"
+pt = "Manjericão"
+fr = "Basilic"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. En matera se seca más rápido: revísala a diario cuando haga calor."
+fertilize = "Abona poco: si la tierra tiene compost, casi no hace falta. Si las hojas viejas amarillean, dale un poco."
+prune = "Despunta las puntas y quita las flores apenas aparezcan: así la mata se pone frondosa y no se amarga."
+harvest = "Empieza a cortar cuando la mata tenga buen tamaño; corta justo encima de un par de hojas."
+
+[[plant]]
+id = "yerbabuena"
+kind = "aromatica"
+scientific = "Mentha spicata"
+es = "Yerbabuena"
+en = "Spearmint"
+pt = "Hortelã"
+fr = "Menthe verte"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Le gusta la tierra fresca y húmeda. Riega apenas la superficie se sienta seca, sin encharcar."
+fertilize = "Un poco de compost de vez en cuando la mantiene verde. No necesita mucho abono."
+prune = "Córtala seguido para que no se ponga leñosa. Es invasora: mejor en matera propia."
+harvest = "Corta ramitas cuando quieras, dejando siempre hojas en la base para que rebrote."
+
+[[plant]]
+id = "oregano"
+kind = "aromatica"
+scientific = "Origanum vulgare"
+es = "Orégano"
+en = "Oregano"
+pt = "Orégano"
+fr = "Origan"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Prefiere quedarse seco a encharcarse. Riega solo cuando la tierra esté seca a un dedo de profundidad."
+fertilize = "Casi no necesita abono; con demasiado pierde aroma. Un poquito de compost al año es suficiente."
+prune = "Recorta las puntas después de florecer para que la mata se mantenga compacta."
+harvest = "Corta ramitas cuando la mata esté bien poblada; el aroma es más fuerte justo antes de florecer."
+
+[[plant]]
+id = "aji"
+kind = "hortaliza"
+scientific = "Capsicum spp."
+es = "Ají"
+en = "Chili pepper"
+pt = "Pimenta"
+fr = "Piment"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 65
+to_days = 90
+from = "trasplante"
+source = "fao-huertos-urbanos-honduras"
+ref = "p. 8, Tiempos para cosechar: Chile, días de trasplante a primera cosecha 65–90"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. Evita que se seque del todo cuando está floreciendo."
+fertilize = "Abona con compost al trasplantar y dale abonadas ligeras durante la cosecha, alrededor de la planta."
+prune = "No necesita poda; quita hojas secas o enfermas y ramas quebradas."
+harvest = "Cosecha cuando el ají tenga el color de la variedad; cortarlo seguido hace que dé más."
+
+[[plant]]
+id = "lechuga"
+kind = "hortaliza"
+scientific = "Lactuca sativa"
+es = "Lechuga"
+en = "Lettuce"
+pt = "Alface"
+fr = "Laitue"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 60
+to_days = 80
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 7: Lettuce, Days to Harvest 60–80 desde siembra"
+
+[plant.hints]
+water = "Tiene raíz corta: riega poco y seguido para que la tierra esté siempre fresca, sin charcos."
+fertilize = "Siembra en tierra con buen compost. Las hojas agradecen un abono con nitrógeno si se ven pálidas."
+prune = "No se poda; quita hojas de afuera dañadas o amarillas."
+harvest = "Siembra un poco cada mes para cosechar siempre. Córtala antes de que se espigue o se pone amarga."
+
+[[plant]]
+id = "cebolla_larga"
+kind = "hortaliza"
+scientific = "Allium fistulosum"
+es = "Cebolla larga"
+en = "Welsh onion"
+pt = "Cebolinha"
+fr = "Ciboule"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 50
+to_days = 75
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 7: Onions, bunching (green), Days to Harvest 50–75"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. No le gusta el encharcamiento: puede pudrirse la base."
+fertilize = "Abona con compost al sembrar y agrega un poco más cada vez que cortes."
+prune = "No necesita poda; quita las hojas secas de afuera."
+harvest = "Puedes sacar algunos tallos y dejar el resto de la mata para que siga echando hijos."
+
+[[plant]]
+id = "fresa"
+kind = "frutal"
+scientific = "Fragaria × ananassa"
+es = "Fresa"
+en = "Strawberry"
+pt = "Morango"
+fr = "Fraise"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 30
+to_days = 60
+from = "trasplante"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 8: Strawberry, Days to Harvest (30–60) desde trasplante a primera cosecha"
+
+[plant.hints]
+water = "Riega cuando la superficie esté seca, al pie y sin mojar los frutos. Un acolchado de paja ayuda a que no se pudran."
+fertilize = "Abona con compost al trasplantar y dale abonadas ligeras durante la cosecha."
+prune = "Quita los estolones (los hilos con plantitas) si quieres más fruta, y las hojas secas."
+harvest = "Cosecha cuando la fresa esté roja casi por completo, mejor en la mañana."
+
+[[plant]]
+id = "limon"
+kind = "frutal"
+scientific = "Citrus × latifolia"
+es = "Limón"
+en = "Lime"
+pt = "Limão-taiti"
+fr = "Citron vert"
+places = ["jardin"]
+
+[[plant.fertilize]]
+days = 42
+product = "abono completo para cítricos (primer año)"
+source = "ufifas-hs867-citrus"
+ref = "p. 2, Nutrition: primer año, abonar aproximadamente cada seis semanas"
+
+[plant.hints]
+water = "Recién sembrado, riégalo seguido el primer mes. Después, riega en sequía o cuando veas los brotes nuevos marchitos a mediodía."
+prune = "Poda poco: quita los chupones verticales y ramas secas, haciendo el corte al ras."
+harvest = "Cosecha cuando el limón tenga buen tamaño y la cáscara esté lisa y brillante."
+
+[[plant]]
+id = "mandarina"
+kind = "frutal"
+scientific = "Citrus reticulata"
+es = "Mandarina"
+en = "Mandarin"
+pt = "Tangerina"
+fr = "Mandarine"
+places = ["jardin"]
+
+[[plant.fertilize]]
+days = 42
+product = "abono completo para cítricos (primer año)"
+source = "ufifas-hs867-citrus"
+ref = "p. 2, Nutrition: primer año, abonar aproximadamente cada seis semanas"
+
+[plant.hints]
+water = "Recién sembrado, riégalo seguido el primer mes. Después, riega en sequía o si los brotes nuevos se marchitan a mediodía."
+prune = "Poda poco: quita los chupones verticales y ramas secas, haciendo el corte al ras."
+harvest = "Cosecha cuando la fruta tenga buen color y sabor; prueba una antes de cosechar todo el árbol."
+
+[[plant]]
+id = "aguacate"
+kind = "frutal"
+scientific = "Persea americana"
+es = "Aguacate"
+en = "Avocado"
+pt = "Abacate"
+fr = "Avocat"
+places = ["jardin"]
+
+[[plant.water]]
+season = "seca"
+days = 3
+source = "ufifas-mg213-avocado"
+ref = "p. 5–6, Irrigation: árboles jóvenes (primeros 3 años) en periodos secos, regar dos veces por semana"
+
+[[plant.fertilize]]
+days = 30
+product = "abono completo (árbol joven, primer año)"
+source = "ufifas-mg213-avocado"
+ref = "p. 5, Fertilization: árboles jóvenes cada 1 a 2 meses durante el primer año (se toma el menor)"
+
+[plant.harvest]
+from_days = 1095
+to_days = 1460
+from = "trasplante"
+source = "ufifas-mg213-avocado"
+ref = "p. 4, Production: árboles injertados empiezan a producir a los 3–4 años"
+
+[plant.hints]
+water = "En lluvias casi no hay que regar. Nunca lo dejes encharcado: el aguacate sufre mucho con raíces mojadas."
+prune = "Poda solo para controlar la altura y quitar ramas secas o enfermas."
+
+[[plant]]
+id = "sabila"
+kind = "medicinal"
+scientific = "Aloe vera"
+es = "Sábila"
+en = "Aloe vera"
+pt = "Babosa"
+fr = "Aloès"
+places = ["matera", "jardin"]
+
+[plant.hints]
+water = "Es una suculenta: riega solo cuando la tierra esté totalmente seca. El exceso de agua la pudre."
+fertilize = "Casi no necesita abono. Usa tierra suelta con arena y, si acaso, un poquito de compost al año."
+prune = "Quita las hojas secas de abajo y separa los hijos para sembrarlos en otra matera."
+harvest = "Corta las hojas de afuera, gruesas y maduras, cerca de la base; deja las del centro."
+
+[[plant]]
+id = "rosa"
+kind = "ornamental"
+scientific = "Rosa spp."
+es = "Rosa"
+en = "Rose"
+pt = "Rosa"
+fr = "Rose"
+places = ["matera", "jardin"]
+
+[[plant.fertilize]]
+days = 30
+source = "ufifas-gs-roses"
+ref = "Fertilizing: aplicar mensualmente (todo el año en el sur de Florida)"
+
+[plant.prune]
+days = 180
+source = "ufifas-gs-roses"
+ref = "Pruning: poda fuerte una vez al año; en el sur de Florida (clima cálido) puede necesitarse dos veces al año"
+
+[plant.hints]
+water = "Riega al pie, sin mojar las hojas, cuando la tierra de arriba esté seca. Recién sembrada, riégala más seguido."
+harvest = "Corta las flores cuando el botón empieza a abrir, justo encima de una hoja sana."
+
+[[plant]]
+id = "prado"
+kind = "prado"
+scientific = "Cenchrus clandestinus (syn. Pennisetum clandestinum)"
+es = "Prado (kikuyo)"
+en = "Kikuyu grass"
+pt = "Grama-quicuio"
+fr = "Kikuyu"
+places = ["prado"]
+
+[plant.mow]
+height_min_cm = 2.5
+height_max_cm = 3.8
+source = "ucipm-kikuyu-tips"
+ref = "Mowing: mow at 1–1.5 inches (≈ 2,5–3,8 cm)"
+
+[plant.hints]
+water = "Riega profundo y pocas veces, mejor que poquito todos los días. En lluvias normalmente no hace falta."
+fertilize = "Abona solo en época de crecimiento activo y con moderación; con mucho calor, mejor no abonar."
+prune = "El prado no se poda: se corta. Recoge las hojas y ramas que caigan encima para que no se amarille."
+harvest = "No se cosecha. El pasto cortado puede dejarse encima como abono o usarse en el compost."
+mow = "Corta seguido cuando crece rápido (lluvias) y espacia los cortes cuando el crecimiento se frena."
+
+# ─────────────────────── AROMÁTICAS Y MEDICINALES ───────────────────────
+
+[[plant]]
+id = "romero"
+kind = "aromatica"
+scientific = "Salvia rosmarinus"
+es = "Romero"
+en = "Rosemary"
+pt = "Alecrim"
+fr = "Romarin"
+places = ["matera", "huerta", "jardin"]
+
+[plant.hints]
+water = "Le gusta más lo seco que lo húmedo. Riega solo cuando la tierra esté seca bien abajo; nunca lo encharques."
+fertilize = "Casi no necesita abono. Tierra suelta y con buen drenaje le importa más que el fertilizante."
+prune = "Recorta las puntas después de florecer para que no se ponga leñoso; no cortes en la madera vieja."
+harvest = "Corta ramitas tiernas cuando quieras, sin quitar más de una parte pequeña de la mata a la vez."
+
+[[plant]]
+id = "prontoalivio"
+kind = "medicinal"
+scientific = "Lippia alba"
+es = "Prontoalivio"
+en = "Bushy lippia"
+pt = "Erva-cidreira-brasileira"
+fr = "Lippia alba"
+places = ["matera", "huerta", "jardin"]
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. Aguanta algo de sequía, pero no el encharcamiento."
+fertilize = "Un poco de compost al pie de vez en cuando es suficiente."
+prune = "Pódalo para que no se alargue y se vuelva ralo; rebrota con fuerza después de cortar."
+harvest = "Corta ramas con hojas sanas cuando la mata esté bien formada; mejor antes de que florezca del todo."
+
+[[plant]]
+id = "lavanda"
+kind = "aromatica"
+scientific = "Lavandula spp."
+es = "Lavanda"
+en = "Lavender"
+pt = "Lavanda"
+fr = "Lavande"
+places = ["matera", "jardin"]
+
+[plant.hints]
+water = "Riega solo cuando la tierra esté seca. Odia los pies mojados: usa tierra con arena y matera con huecos."
+fertilize = "Casi no necesita abono; mucho abono le quita aroma y flor."
+prune = "Después de florecer, recorta las varas florales y un poquito del follaje, sin llegar a la madera vieja."
+harvest = "Corta las espigas cuando las primeras flores empiezan a abrir; así guardan mejor el aroma."
+
+[[plant]]
+id = "perejil"
+kind = "aromatica"
+scientific = "Petroselinum crispum"
+es = "Perejil"
+en = "Parsley"
+pt = "Salsa"
+fr = "Persil"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Mantén la tierra húmeda, sin charcos. Riega cuando la superficie se empiece a secar."
+fertilize = "Tierra con compost al sembrar; si las hojas palidecen, un poco más de compost."
+prune = "Quita las hojas amarillas y corta el tallo floral si aparece, para que siga dando hojas."
+harvest = "Corta primero los tallos de afuera, desde la base, y deja crecer los del centro. Germina lento: ten paciencia."
+
+[[plant]]
+id = "menta"
+kind = "aromatica"
+scientific = "Mentha × piperita"
+es = "Menta"
+en = "Peppermint"
+pt = "Hortelã-pimenta"
+fr = "Menthe poivrée"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Le gusta la humedad constante. Riega apenas la superficie se sienta seca."
+fertilize = "Un poquito de compost de vez en cuando; no necesita mucho."
+prune = "Córtala seguido para que se mantenga tierna. Se riega por todo lado: mejor en matera propia."
+harvest = "Corta ramitas cuando las necesites, dejando hojas en la base para que rebrote."
+
+[[plant]]
+id = "curcuma"
+kind = "medicinal"
+scientific = "Curcuma longa"
+es = "Cúrcuma"
+en = "Turmeric"
+pt = "Açafrão-da-terra"
+fr = "Curcuma"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Mantén la tierra húmeda mientras tiene hojas. Cuando las hojas se secan, riega mucho menos."
+fertilize = "Siembra en tierra rica en compost; agrega un poco más al pie mientras crece."
+prune = "No se poda; quita las hojas secas."
+harvest = "Cosecha los rizomas cuando las hojas se pongan amarillas y se sequen solas."
+
+[[plant]]
+id = "manzanilla"
+kind = "medicinal"
+scientific = "Matricaria chamomilla"
+es = "Manzanilla"
+en = "Chamomile"
+pt = "Camomila"
+fr = "Camomille"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca, sin encharcar."
+fertilize = "Crece bien en tierra sencilla; con un poco de compost al sembrar es suficiente."
+prune = "No necesita poda; cosechar las flores seguido hace que eche más."
+harvest = "Recoge las flores cuando estén bien abiertas, en un día seco, y sécalas a la sombra."
+
+[[plant]]
+id = "toronjil"
+kind = "medicinal"
+scientific = "Melissa officinalis"
+es = "Toronjil"
+en = "Lemon balm"
+pt = "Melissa"
+fr = "Mélisse"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Le gusta la tierra fresca. Riega cuando la superficie esté seca, sin dejar charcos."
+fertilize = "Un poco de compost de vez en cuando; demasiado abono le baja el aroma."
+prune = "Recórtalo antes de que florezca para que dé hojas nuevas y no se riegue la semilla."
+harvest = "Corta ramitas con hojas cuando quieras, mejor en la mañana."
+
+[[plant]]
+id = "calendula"
+kind = "medicinal"
+scientific = "Calendula officinalis"
+es = "Caléndula"
+en = "Pot marigold"
+pt = "Calêndula"
+fr = "Souci"
+places = ["matera", "huerta", "jardin"]
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. Aguanta algo de sequía."
+fertilize = "No necesita mucho abono; con demasiado da hojas y pocas flores."
+prune = "Quita las flores marchitas para que la planta siga floreciendo."
+harvest = "Recoge las flores recién abiertas, en un día seco, y sécalas a la sombra."
+
+[[plant]]
+id = "jengibre"
+kind = "medicinal"
+scientific = "Zingiber officinale"
+es = "Jengibre"
+en = "Ginger"
+pt = "Gengibre"
+fr = "Gingembre"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 240
+to_days = 300
+from = "siembra"
+source = "ufifas-gs-ginger"
+ref = "Cultivo de ciclo largo: unos ocho a diez meses para rizomas bien desarrollados"
+
+[plant.hints]
+water = "Después de sembrar, mantén la tierra húmeda hasta que salgan los brotes; luego riega cuando la superficie esté seca."
+fertilize = "Prepara la tierra con bastante materia orgánica (compost o estiércol curado) antes de sembrar."
+prune = "No se poda; quita las hojas secas."
+harvest = "Si lo necesitas antes, puedes sacar un pedacito de rizoma tierno desde un lado de la mata."
+
+[[plant]]
+id = "tomillo"
+kind = "aromatica"
+scientific = "Thymus vulgaris"
+es = "Tomillo"
+en = "Thyme"
+pt = "Tomilho"
+fr = "Thym"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Prefiere lo seco. Riega solo cuando la tierra esté seca y asegúrate de que la matera drene bien."
+fertilize = "Casi no necesita abono; en tierra pobre tiene más sabor."
+prune = "Recorta las puntas después de florecer para que no se ponga leñoso."
+harvest = "Corta ramitas cuando quieras; deja siempre buena parte de la mata."
+
+[[plant]]
+id = "estevia"
+kind = "medicinal"
+scientific = "Stevia rebaudiana"
+es = "Estevia"
+en = "Stevia"
+pt = "Estévia"
+fr = "Stévia"
+places = ["matera", "huerta"]
+
+[plant.hints]
+water = "Mantén la tierra apenas húmeda; riega cuando la superficie esté seca. No la encharques."
+fertilize = "Un poco de compost al sembrar y de vez en cuando al pie."
+prune = "Despunta las puntas para que ramifique, y corta los botones florales: las hojas pierden dulzor al florecer."
+harvest = "Cosecha las hojas antes de que florezca, que es cuando están más dulces."
+
+[[plant]]
+id = "ruda"
+kind = "medicinal"
+scientific = "Ruta graveolens"
+es = "Ruda"
+en = "Rue"
+pt = "Arruda"
+fr = "Rue"
+places = ["matera", "jardin"]
+
+[plant.hints]
+water = "Aguanta bien lo seco. Riega solo cuando la tierra esté seca."
+fertilize = "Casi no necesita abono."
+prune = "Recórtala para mantenerla compacta. Usa guantes: su savia puede irritar la piel con el sol."
+harvest = "Corta ramitas cuando las necesites, siempre con guantes."
+
+# ─────────────────────────────── HUERTA ───────────────────────────────
+
+[[plant]]
+id = "papa"
+kind = "hortaliza"
+scientific = "Solanum tuberosum"
+es = "Papa"
+en = "Potato"
+pt = "Batata"
+fr = "Pomme de terre"
+places = ["huerta"]
+
+[plant.harvest]
+from_days = 85
+to_days = 110
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 8: Potatoes, Irish, Days to Harvest 85–110"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca, sobre todo cuando florece. Evita el encharcamiento."
+fertilize = "Abona con compost al sembrar. Las papas responden bien a abonos con potasio."
+prune = "No se poda; arrima tierra al pie (aporque) para que los tubérculos no queden al sol."
+harvest = "Cosecha cuando el follaje se ponga amarillo y se seque; escarba con cuidado para no herirlas."
+
+[[plant]]
+id = "pimenton"
+kind = "hortaliza"
+scientific = "Capsicum annuum"
+es = "Pimentón"
+en = "Bell pepper"
+pt = "Pimentão"
+fr = "Poivron"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 65
+to_days = 75
+from = "trasplante"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 8: Peppers, Days to Harvest (65–75) desde trasplante"
+
+[plant.hints]
+water = "Riega parejo cuando la tierra de arriba esté seca; no dejes que se seque del todo mientras da fruto."
+fertilize = "Abona con compost al trasplantar y dale 2 o 3 abonadas ligeras durante el cultivo."
+prune = "No necesita poda; ponle un tutor si se carga mucho de frutos."
+harvest = "Puedes cosecharlo verde y firme, o esperar a que cambie a rojo o amarillo para que sea más dulce."
+
+[[plant]]
+id = "zanahoria"
+kind = "hortaliza"
+scientific = "Daucus carota"
+es = "Zanahoria"
+en = "Carrot"
+pt = "Cenoura"
+fr = "Carotte"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 70
+to_days = 120
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 6: Carrots, Days to Harvest 70–120"
+
+[plant.hints]
+water = "Mantén la tierra húmeda mientras germina. Después, riega parejo: los cambios bruscos rajan las raíces."
+fertilize = "Usa compost bien descompuesto; el estiércol fresco las deforma. Responden bien al potasio."
+prune = "No se poda; ralea las plantitas para que cada zanahoria tenga espacio."
+harvest = "Saca una de prueba: cuando el hombro tenga buen grosor, ya están listas."
+
+[[plant]]
+id = "frijol"
+kind = "hortaliza"
+scientific = "Phaseolus vulgaris"
+es = "Fríjol"
+en = "Common bean"
+pt = "Feijão"
+fr = "Haricot"
+places = ["huerta"]
+
+[plant.harvest]
+from_days = 45
+to_days = 60
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 6: Beans, bush, Days to Harvest 45–60 (fríjol de enredadera: 50–70)"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca, sobre todo en floración. No mojes las hojas."
+fertilize = "Necesita poco abono: es leguminosa y aporta su propio nitrógeno. Compost al sembrar basta."
+prune = "No se poda; al fríjol de enredadera ponle un tutor o una malla."
+harvest = "Para comer en vaina, cógelo tierno; para grano seco, espera a que las vainas se sequen en la mata."
+
+[[plant]]
+id = "arveja"
+kind = "hortaliza"
+scientific = "Pisum sativum"
+es = "Arveja"
+en = "Pea"
+pt = "Ervilha"
+fr = "Pois"
+places = ["huerta"]
+
+[plant.harvest]
+from_days = 60
+to_days = 80
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 7: Peas, snow or English, Days to Harvest 60–80"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca, en especial al florecer y llenar vainas."
+fertilize = "Como el fríjol, necesita poco abono; compost al sembrar es suficiente."
+prune = "No se poda; dale un tutor o malla para trepar."
+harvest = "Cosecha las vainas cuando estén llenas pero todavía verdes y tiernas."
+
+[[plant]]
+id = "ahuyama"
+kind = "hortaliza"
+scientific = "Cucurbita moschata"
+es = "Ahuyama"
+en = "Winter squash"
+pt = "Abóbora"
+fr = "Courge"
+places = ["huerta"]
+
+[plant.harvest]
+from_days = 85
+to_days = 120
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 8: Squash, winter, Days to Harvest 85–120"
+
+[plant.hints]
+water = "Riega al pie, sin mojar las hojas, cuando la tierra esté seca. Necesita más agua cuando está llenando frutos."
+fertilize = "Siembra en un hoyo con bastante compost; agrega más alrededor cuando empiece a echar guías."
+prune = "No necesita poda; puedes guiar las ramas para que no invadan."
+harvest = "Cosecha cuando la cáscara esté dura (la uña no la marca) y el pedúnculo se vea seco."
+
+[[plant]]
+id = "pepino"
+kind = "hortaliza"
+scientific = "Cucumis sativus"
+es = "Pepino"
+en = "Cucumber"
+pt = "Pepino"
+fr = "Concombre"
+places = ["matera", "huerta"]
+
+[plant.harvest]
+from_days = 40
+to_days = 65
+from = "siembra"
+source = "ufifas-vh021-vegetable-guide"
+ref = "Table 1, p. 7: Cucumbers, Days to Harvest 40–65"
+
+[plant.hints]
+water = "Riega parejo al pie cuando la tierra de arriba esté seca; la falta de agua lo pone amargo."
+fertilize = "Siembra con buen compost y dale abonadas ligeras cuando empiece a dar fruto."
+prune = "No necesita poda; ponle tutor o malla para que trepe y los frutos no toquen el suelo."
+harvest = "Cógelos jóvenes y firmes; si los dejas crecer mucho, la planta da menos."
+
+# ─────────────────────────────── FRUTALES ───────────────────────────────
+
+[[plant]]
+id = "platano"
+kind = "frutal"
+scientific = "Musa × paradisiaca (grupo AAB)"
+es = "Plátano"
+en = "Plantain"
+pt = "Banana-da-terra"
+fr = "Banane plantain"
+places = ["huerta", "jardin"]
+
+[[plant.fertilize]]
+days = 60
+product = "abono completo con potasio y magnesio"
+source = "ufifas-mg040-banana"
+ref = "p. 6, Fertilizer, y Table 4 nota 1 (p. 11): abono seco cada 2 meses todo el año (la guía incluye plátanos)"
+
+[plant.harvest]
+from_days = 300
+to_days = 720
+from = "trasplante"
+source = "ufifas-mg040-banana"
+ref = "p. 5: con buen manejo, los frutos maduran 10–24 meses después de sembrar"
+
+[plant.hints]
+water = "Necesita mucha agua, sobre todo en sequía, pero nunca encharcamiento. Un acolchado de hojas ayuda."
+prune = "Deja pocos hijos por mata y quita las hojas secas. Después de cosechar, corta el tallo que ya dio racimo."
+
+[[plant]]
+id = "papaya"
+kind = "frutal"
+scientific = "Carica papaya"
+es = "Papaya"
+en = "Papaya"
+pt = "Mamão"
+fr = "Papaye"
+places = ["huerta", "jardin"]
+
+[[plant.water]]
+climate = "calido"
+days = 3
+source = "ufifas-mg054-papaya"
+ref = "p. 4, Irrigation: suelos que retienen agua, cada 3–4 días en clima caliente (en arenosos, a diario o cada otro día)"
+
+[[plant.fertilize]]
+days = 60
+product = "abono completo (planta de más de 7–8 meses)"
+source = "ufifas-mg054-papaya"
+ref = "p. 4, Fertilizer: plantas jóvenes cada 14 días; desde 7–8 meses de edad, cada dos meses"
+
+[plant.harvest]
+from_days = 210
+to_days = 330
+from = "trasplante"
+source = "ufifas-mg054-papaya"
+ref = "p. 3, Production: fruta de 7 a 11 meses después de sembrar"
+
+[plant.hints]
+water = "No la encharques: la raíz se pudre fácil. Si la planta bota flores y frutos pequeños, puede ser falta de agua."
+fertilize = "Mientras está pequeña, abónala poquito y seguido; ya adulta, con menos frecuencia."
+prune = "La papaya no se poda; solo quita las hojas secas de abajo."
+
+[[plant]]
+id = "mango"
+kind = "frutal"
+scientific = "Mangifera indica"
+es = "Mango"
+en = "Mango"
+pt = "Manga"
+fr = "Mangue"
+places = ["jardin"]
+
+[[plant.water]]
+season = "seca"
+days = 7
+source = "ufifas-mg216-mango"
+ref = "p. 5, Irrigation: árboles jóvenes (primeros 3 años) en periodos secos, regar una vez por semana"
+
+[[plant.fertilize]]
+days = 60
+product = "abono completo (árbol joven, primer año)"
+source = "ufifas-mg216-mango"
+ref = "p. 4, Fertilizer: primer año cada dos a tres meses (se toma el menor); luego 2–3 veces al año"
+
+[plant.harvest]
+from_days = 1095
+to_days = 1825
+from = "trasplante"
+source = "ufifas-mg216-mango"
+ref = "p. 3, Production: árboles injertados empiezan a producir 3–5 años después de sembrar"
+
+[plant.hints]
+water = "El mango adulto casi no necesita riego, solo en sequías fuertes."
+prune = "Poda después de la cosecha para controlar la altura y abrir la copa; quita ramas secas."
+
+[[plant]]
+id = "maracuya"
+kind = "frutal"
+scientific = "Passiflora edulis f. flavicarpa"
+es = "Maracuyá"
+en = "Passion fruit"
+pt = "Maracujá"
+fr = "Fruit de la passion"
+places = ["huerta", "jardin"]
+
+[[plant.fertilize]]
+days = 35
+product = "abono de producción (en corona, a 15 cm del tallo)"
+source = "ica-maracuya-invernal-2011"
+ref = "Tabla 2, Plan de fertilización (p. 13 del PDF): etapa de producción, cada 35 días"
+
+[plant.prune]
+days = 15
+source = "ica-maracuya-invernal-2011"
+ref = "p. 15 del PDF: podas sanitarias quincenales (temporada de lluvias)"
+
+[plant.harvest]
+from_days = 240
+to_days = 300
+from = "trasplante"
+source = "ica-maracuya-invernal-2011"
+ref = "Cosecha y poscosecha (p. 17 del PDF): inicia 8–10 meses después del trasplante (a veces 6–7)"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca; el riego irregular hace que se caigan los frutos."
+prune = "La poda quincenal es para quitar ramas, hojas y frutos enfermos, sobre todo en lluvias."
+
+[[plant]]
+id = "guayaba"
+kind = "frutal"
+scientific = "Psidium guajava"
+es = "Guayaba"
+en = "Guava"
+pt = "Goiaba"
+fr = "Goyave"
+places = ["jardin"]
+climates = ["templado"]
+climates_source = "ica-guayaba-invernal-2012"
+climates_ref = "p. 5 del PDF: rango óptimo entre 1.200 y 1.800 msnm"
+
+[[plant.water]]
+season = "seca"
+days = 7
+source = "ufifas-mg045-guava"
+ref = "Table 2 (p. 8), Watering: en periodos secos regar cada 7 a 10 días (se toma el menor)"
+
+[[plant.fertilize]]
+days = 30
+product = "abono completo (árbol joven, primer año)"
+source = "ufifas-mg045-guava"
+ref = "p. 4, Fertilizer: primer año cada 1 a 2 meses (se toma el menor); luego 3–4 veces al año"
+
+[plant.harvest]
+from_days = 1095
+to_days = 1460
+from = "trasplante"
+source = "ufifas-mg045-guava"
+ref = "p. 3, Production: empieza a producir 3 a 4 años después de sembrar"
+
+[plant.hints]
+water = "Recién sembrada necesita riegos más seguidos; en lluvias casi no hay que regar."
+prune = "Poda después de cosechar para controlar el tamaño; una poda ligera ayuda a que dé fruta casi todo el año."
+
+[[plant]]
+id = "lulo"
+kind = "frutal"
+scientific = "Solanum quitoense"
+es = "Lulo"
+en = "Naranjilla"
+pt = "Naranjilla"
+fr = "Naranjille"
+places = ["huerta", "jardin"]
+
+[plant.harvest]
+from_days = 210
+to_days = 270
+from = "trasplante"
+source = "corpoica-lulo-2018"
+ref = "p. 4 del PDF (Introducción): cultivares Castilla y Castilla Larga Vida inician producción 7–9 meses después del trasplante"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca. No lo encharques: en lluvias cuida que el agua drene."
+fertilize = "Abona con compost al pie con regularidad; es una planta exigente cuando está dando fruto."
+prune = "Quita los brotes bajos del tallo y las ramas enfermas para que entre aire y luz."
+harvest = "Cosecha cuando el lulo esté pintón (mitad amarillo); termina de madurar fuera de la planta."
+
+[[plant]]
+id = "granadilla"
+kind = "frutal"
+scientific = "Passiflora ligularis"
+es = "Granadilla"
+en = "Sweet granadilla"
+pt = "Granadilha"
+fr = "Grenadille"
+places = ["huerta", "jardin"]
+climates = ["templado", "frio"]
+climates_source = "ica-granadilla-invernal-2011"
+climates_ref = "p. 17 del PDF, Manejo cultural: establecer el cultivo entre 1.800 y 2.300 msnm"
+
+[plant.harvest]
+from_days = 270
+from = "siembra"
+source = "ica-granadilla-invernal-2011"
+ref = "Cosecha y poscosecha (p. 11 del PDF): se inicia alrededor de los nueve meses después de la siembra"
+
+[plant.hints]
+water = "Riega cuando la tierra de arriba esté seca y evita el encharcamiento, que trae hongos en la raíz."
+fertilize = "Abona según el análisis de suelo; en casa, compost al pie con regularidad la mantiene productiva."
+prune = "Haz podas de formación y quita hojas y ramas enfermas para que entre luz y aire; desinfecta la tijera."
+
+[[plant]]
+id = "banano"
+kind = "frutal"
+scientific = "Musa acuminata (grupo AAA)"
+es = "Banano"
+en = "Banana"
+pt = "Banana"
+fr = "Banane"
+places = ["huerta", "jardin"]
+
+[[plant.fertilize]]
+days = 60
+product = "abono completo con potasio y magnesio"
+source = "ufifas-mg040-banana"
+ref = "p. 6, Fertilizer, y Table 4 nota 1 (p. 11): abono seco cada 2 meses todo el año"
+
+[plant.harvest]
+from_days = 300
+to_days = 720
+from = "trasplante"
+source = "ufifas-mg040-banana"
+ref = "p. 5: con buen manejo, los frutos maduran 10–24 meses después de sembrar"
+
+[plant.hints]
+water = "Necesita mucha agua, sobre todo en sequía, pero nunca encharcamiento. Un acolchado de hojas ayuda."
+prune = "Deja pocos hijos por mata y quita las hojas secas. Después de cosechar, corta el tallo que ya dio racimo."
