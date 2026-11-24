@@ -23,8 +23,8 @@ also in English, Portuguese and French. ¿Tienes una finca? Conoce Surco.
   sent to Open-Meteo, and the app shows the exact request.
 - **Insumos**, **Diario** (notes, pests, harvests, photos) and **Prado** (mowing interval and
   height).
-- **AI assistant (⌘J).** Your own Claude Code, Codex or opencode, with read-only access to your
-  garden. Any change it suggests arrives as a card that you accept or reject.
+- **AI assistant (⌘J).** Your own Claude Code, Codex or opencode, or a model of your own Ollama
+  on this computer (everything stays local), with read-only access to your garden. Any change it suggests arrives as a card that you accept or reject.
 - **Otherwise Apps.**
   - Care tasks appear in its calendar.
   - Daily "Hoy toca regar…" notifications arrive through Otherwise Helper, even when the app is
