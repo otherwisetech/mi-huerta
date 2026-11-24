@@ -1,4 +1,5 @@
 app.about.menu = Sobre o {app}
+app.about.footer_link = Sobre
 app.about.description = Um app gratuito para cuidar da sua horta em casa: tomateiros, ervas, frutíferas, vasos e o gramado. Ele lembra quando regar, adubar, podar, cortar a grama e colher.
 app.about.by = Feito por {company}
 app.about.place = Wyoming, EUA
@@ -12,6 +13,7 @@ app.menu.help = Ajuda
 app.vcity.menu = Crie sua loja na Vcity
 app.vcity.pitch = Sobrou tomate ou muda? Com a Vcity você vende on-line, grátis para começar.
 app.surco = Tem uma fazenda? Conheça o Surco
+app.privacy.local = Seus dados ficam neste computador
 app.yes = Sim
 app.no = Não
 app.save = Salvar

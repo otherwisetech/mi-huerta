@@ -1,4 +1,5 @@
 app.about.menu = About {app}
+app.about.footer_link = About
 app.about.description = A free app to look after your home garden: tomato plants, herbs, fruit trees, pots and the lawn. It reminds you when to water, fertilise, prune, mow and harvest.
 app.about.by = Made by {company}
 app.about.place = Wyoming, USA
@@ -12,6 +13,7 @@ app.menu.help = Help
 app.vcity.menu = Create your store on Vcity
 app.vcity.pitch = Got spare tomatoes or seedlings? With Vcity you can sell online, free to start.
 app.surco = Have a farm? Meet Surco
+app.privacy.local = Your data stays on this computer
 app.yes = Yes
 app.no = No
 app.save = Save

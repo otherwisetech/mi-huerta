@@ -3920,7 +3920,7 @@ dependencies = [
 
 [[package]]
 name = "mi-huerta-app"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "chrono",
@@ -3934,13 +3934,14 @@ dependencies = [
  "objc",
  "otherwise-agent-panel",
  "otherwise-link 0.5.1",
+ "otherwise-ui",
  "serde_json",
  "winresource",
 ]
 
 [[package]]
 name = "mi-huerta-cli"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "mi-huerta-core",
@@ -3952,7 +3953,7 @@ dependencies = [
 
 [[package]]
 name = "mi-huerta-core"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "otherwise-link 0.5.1",
@@ -3965,7 +3966,7 @@ dependencies = [
 
 [[package]]
 name = "mi-huerta-i18n"
-version = "0.1.1"
+version = "0.1.2"
 
 [[package]]
 name = "mime"
@@ -4756,6 +4757,15 @@ dependencies = [
  "serde",
  "serde_json",
  "uuid",
+]
+
+[[package]]
+name = "otherwise-ui"
+version = "0.1.0"
+source = "git+https://github.com/otherwisetech/otherwise-ui?tag=v0.1.0#a47c8fe0a3ff1710ac8b4e4e74f39fe35909faab"
+dependencies = [
+ "gpui",
+ "gpui-component",
 ]
 
 [[package]]

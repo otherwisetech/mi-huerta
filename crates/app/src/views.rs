@@ -126,54 +126,29 @@ impl HuertaApp {
         let due = self.garden().map(|g| schedule::agenda(g, self.catalog(), today).tasks.iter().filter(|x| x.due <= today).count()).unwrap_or(0);
         let low = self.garden().map(|g| g.low_supplies().len()).unwrap_or(0);
         let item = |tab: Tab, label: String, ic: IconName, badge: usize, cx: &mut Context<Self>| {
-            let on = self.tab == tab;
-            let hover = t.border.opacity(0.5);
-            div()
-                .id(("tab", tab as usize))
-                .flex()
-                .items_center()
-                .gap(px(9.))
-                .h(px(34.))
-                .px(px(10.))
-                .rounded(px(8.))
-                .cursor_pointer()
-                .text_size(px(13.))
-                .when(on, |d| d.bg(t.accent_soft).text_color(t.accent).font_weight(FontWeight::SEMIBOLD))
-                .when(!on, |d| d.hover(move |s| s.bg(hover)))
-                .child(icon(ic, 15., if on { t.accent } else { t.ink_muted }))
-                .child(div().flex_1().child(label))
-                .when(badge > 0, |d| d.child(chip(badge.to_string(), t.on_fill(), t.accent)))
-                .on_click(cx.listener(move |this, _, _, cx| this.set_tab(tab, cx)))
+            otherwise_ui::NavItem::new(("tab", tab as usize), label).icon(ic).badge((badge > 0).then(|| badge.to_string())).active(self.tab == tab).on_click(cx.listener(move |this, _, _, cx| this.set_tab(tab, cx)))
         };
         let mut climate = Vec::new();
         if let Some(g) = self.garden() {
             climate.extend(g.settings.climate.map(climate_label));
             climate.push(season_label(g.settings.season));
         }
-        div()
-            .flex()
-            .flex_col()
-            .flex_none()
-            .w(px(212.))
-            .h_full()
-            .p(px(12.))
-            .gap(px(3.))
-            .border_r_1()
-            .border_color(t.border)
-            .bg(t.surface)
-            .child(div().flex().items_center().gap(px(9.)).px(px(6.)).pb(px(14.)).pt(px(4.)).child(div().flex().items_center().justify_center().size(px(30.)).rounded(px(8.)).bg(t.brand).child(ui::logo_glyph(18., gpui::white()))).child(div().text_size(px(15.)).font_weight(FontWeight::SEMIBOLD).child(crate::APP_NAME)))
-            .child(item(Tab::Today, i18n::t!("app.tab.today"), IconName::Calendar, due, cx))
-            .child(item(Tab::Plants, i18n::t!("app.tab.plants"), IconName::Heart, 0, cx))
-            .child(item(Tab::Journal, i18n::t!("app.tab.journal"), IconName::BookOpen, 0, cx))
-            .child(item(Tab::Supplies, i18n::t!("app.tab.supplies"), IconName::Inbox, low, cx))
-            .child(item(Tab::Lawn, i18n::t!("app.tab.lawn"), IconName::Menu, 0, cx))
-            .child(item(Tab::Settings, i18n::t!("app.tab.settings"), IconName::Settings, 0, cx))
-            .child(div().flex_1())
-            .child(outline_button(t, "assistant").w_full().child(icon(IconName::Bot, 14., t.ink)).child(i18n::t!("app.agent.open")).on_click(cx.listener(|this, _, window, cx| this.toggle_panel(window, cx))))
-            .child(div().pt(px(8.)).px(px(4.)).text_size(px(11.)).text_color(t.ink_muted).child(climate.join(" · "))) // i18n-ok: separator
+        let nav = otherwise_ui::NavGroup::new(None::<SharedString>)
+            .item(item(Tab::Today, i18n::t!("app.tab.today"), IconName::Calendar, due, cx))
+            .item(item(Tab::Plants, i18n::t!("app.tab.plants"), IconName::Heart, 0, cx))
+            .item(item(Tab::Journal, i18n::t!("app.tab.journal"), IconName::BookOpen, 0, cx))
+            .item(item(Tab::Supplies, i18n::t!("app.tab.supplies"), IconName::Inbox, low, cx))
+            .item(item(Tab::Lawn, i18n::t!("app.tab.lawn"), IconName::Menu, 0, cx))
+            .item(item(Tab::Settings, i18n::t!("app.tab.settings"), IconName::Settings, 0, cx));
+        otherwise_ui::Sidebar::new("sidebar")
+            .brand(ui::logo_glyph(otherwise_ui::tokens::size::LOGO_MARK, gpui::white()), crate::APP_NAME)
+            .group(nav)
+            .footer(otherwise_ui::assistant_button(t, "assistant", i18n::t!("app.agent.open"), None).on_click(cx.listener(|this, _, window, cx| this.toggle_panel(window, cx))))
+            .when(!climate.is_empty(), |d| d.footer(div().px(px(otherwise_ui::tokens::space::S2)).text_size(px(otherwise_ui::tokens::text::CAPTION)).text_color(t.ink_muted).child(climate.join(" · ")))) // i18n-ok: separator
+            .footer(otherwise_ui::privacy_note(t, i18n::t!("app.privacy.local"), None))
     }
 
-    pub fn render_footer(&self, t: &Tokens, cx: &mut Context<Self>) -> impl IntoElement {
+    pub fn render_footer(&self, _t: &Tokens, cx: &mut Context<Self>) -> impl IntoElement {
         let status = match &self.store {
             Some(s) => {
                 let st = s.status();
@@ -186,92 +161,41 @@ impl HuertaApp {
             }
             None => i18n::t!("app.storage.none"),
         };
-        div()
-            .flex()
-            .flex_none()
-            .items_center()
-            .gap(px(14.))
-            .h(px(28.))
-            .px(px(14.))
-            .border_t_1()
-            .border_color(t.border)
-            .bg(t.surface)
-            .text_size(px(11.))
-            .text_color(t.ink_muted)
-            .child(ui::link(t, "footer-about").child(i18n::t!("app.about.menu", app = crate::APP_NAME)).on_click(cx.listener(|this, _, _, cx| {
+        otherwise_ui::AppFooter::new(crate::APP_NAME, i18n::t!("app.about.footer_link"))
+            .version(crate::VERSION)
+            .status(div().truncate().child(status))
+            .item(div().flex_none().child(i18n::t!("app.surco")))
+            .on_about(cx.listener(|this, _, _, cx| {
                 this.about = true;
                 cx.notify();
-            })))
-            .child(div().flex_1().min_w_0().overflow_hidden().whitespace_nowrap().child(status))
-            .child(div().child(i18n::t!("app.surco")))
+            }))
     }
 
     pub fn render_toast(&self, t: &Tokens) -> Option<impl IntoElement> {
         let (text, _) = self.toast.as_ref()?;
-        Some(div().absolute().bottom(px(40.)).left_0().right_0().flex().justify_center().child(div().px(px(16.)).py(px(10.)).rounded(px(12.)).bg(t.ink).text_color(t.on_fill()).text_size(px(13.)).shadow_lg().child(text.clone())))
+        Some(div().absolute().bottom(px(40.)).left_0().right_0().flex().justify_center().child(otherwise_ui::toast(t, text.clone())))
     }
 
     pub fn render_about(&self, t: &Tokens, cx: &mut Context<Self>) -> impl IntoElement {
-        let card = div()
-            .id("about-card")
-            .flex()
-            .flex_col()
-            .items_center()
-            .gap(px(11.))
-            .w(px(440.))
-            .px(px(30.))
-            .pt(px(28.))
-            .pb(px(22.))
-            .rounded(px(16.))
-            .border_1()
-            .border_color(t.border)
-            .bg(t.surface)
-            .shadow_lg()
-            .on_mouse_down(MouseButton::Left, |_, _, cx| cx.stop_propagation())
-            .child(img(self.logo.clone()).size(px(84.)))
-            .child(div().flex().items_baseline().gap(px(8.)).child(div().text_size(px(22.)).font_weight(FontWeight::SEMIBOLD).child(crate::APP_NAME)).child(div().text_size(px(13.)).text_color(t.ink_muted).child(crate::VERSION)))
-            .child(div().text_center().text_size(px(13.)).line_height(px(19.)).text_color(t.ink_muted).child(i18n::t!("app.about.description")))
-            .child(div().w_full().h(px(1.)).my(px(2.)).bg(t.border))
-            .child(div().flex().flex_col().items_center().gap(px(2.)).child(div().text_size(px(13.)).child(i18n::t!("app.about.by", company = crate::COMPANY))).child(div().text_size(px(12.)).text_color(t.ink_muted).child(i18n::t!("app.about.place"))))
-            .child(div().flex().gap(px(8.)).child(filled_button(t, "about-site", t.accent).child(i18n::t!("app.about.visit")).on_click(|_, _, cx| cx.open_url(crate::COMPANY_URL))).child(outline_button(t, "about-source").child(i18n::t!("app.about.source")).on_click(|_, _, cx| cx.open_url(crate::REPO_URL))))
-            .child(
-                div()
-                    .flex()
-                    .flex_col()
-                    .items_center()
-                    .gap(px(3.))
-                    .w_full()
-                    .px(px(14.))
-                    .py(px(10.))
-                    .rounded(px(10.))
-                    .bg(t.canvas)
-                    .child(div().text_center().text_size(px(12.)).line_height(px(17.)).text_color(t.ink_muted).child(i18n::t!("app.vcity.pitch")))
-                    .child(ui::link(t, "about-vcity").text_size(px(12.)).font_weight(FontWeight::MEDIUM).child(i18n::t!("app.vcity.menu")).on_click(|_, _, cx| cx.open_url(crate::VCITY_URL))),
-            )
-            .child(div().text_size(px(12.)).text_color(t.ink_muted).child(i18n::t!("app.surco")))
-            .child(div().text_center().text_size(px(11.)).line_height(px(15.)).text_color(t.ink_muted).child(i18n::t!("app.about.license", company = crate::COMPANY)));
-        div()
-            .id("about-backdrop")
-            .absolute()
-            .inset_0()
-            .flex()
-            .items_center()
-            .justify_center()
-            .bg(gpui::black().opacity(if t.dark { 0.55 } else { 0.32 }))
-            .on_mouse_down(
-                MouseButton::Left,
-                cx.listener(|this, _, _, cx| {
-                    this.about = false;
-                    cx.notify();
-                }),
-            )
-            .child(card)
+        otherwise_ui::AboutModal::new(crate::APP_NAME, crate::VERSION, i18n::t!("app.about.by", company = crate::COMPANY))
+            .logo(self.logo.clone())
+            .description(i18n::t!("app.about.description"))
+            .place(i18n::t!("app.about.place"))
+            .website(i18n::t!("app.about.visit"), crate::COMPANY_URL)
+            .vcity(i18n::t!("app.vcity.pitch"), i18n::t!("app.vcity.menu"), crate::VCITY_URL)
+            .source(i18n::t!("app.about.source"), crate::REPO_URL)
+            .extra(div().text_size(px(otherwise_ui::tokens::text::SMALL)).text_color(t.ink_muted).child(i18n::t!("app.surco")))
+            .license(i18n::t!("app.about.license", company = crate::COMPANY))
+            .on_dismiss(cx.listener(|this, _: &otherwise_ui::Dismiss, _, cx| {
+                this.about = false;
+                cx.notify();
+            }))
     }
 
     pub fn render_body(&mut self, t: &Tokens, cx: &mut Context<Self>) -> AnyElement {
         if self.store.is_none() {
             let err = self.open_error.clone().unwrap_or_default();
-            return page("no-garden").child(heading(t, i18n::t!("app.storage.none"), None)).child(ui::banner(t, err, true)).child(outline_button(t, "open-other").child(i18n::t!("app.file.open")).on_click(cx.listener(|this, _, window, cx| this.open_garden(window, cx)))).into_any_element();
+            return page("no-garden").child(heading(t, i18n::t!("app.storage.none"), None)).child(ui::banner(t, ui::Tone::Warn, err)).child(outline_button(t, "open-other").child(i18n::t!("app.file.open")).on_click(cx.listener(|this, _, window, cx| this.open_garden(window, cx)))).into_any_element();
         }
         match self.tab {
             Tab::Today => self.render_today(t, cx).into_any_element(),
@@ -287,12 +211,12 @@ impl HuertaApp {
         let mut v = Vec::new();
         if let Some(text) = self.read_only_text() {
             let can_take = matches!(self.store.as_ref().and_then(|s| s.read_only.as_ref()), Some(huerta::store::ReadOnly::Elsewhere(_) | huerta::store::ReadOnly::TakenOver));
-            v.push(div().flex().items_center().gap(px(10.)).child(ui::banner(t, text, true).flex_1()).when(can_take, |d| d.child(outline_button(t, "take-over").child(i18n::t!("app.storage.use_here")).on_click(cx.listener(|this, _, _, cx| this.take_over(cx))))).into_any_element());
+            v.push(div().flex().items_center().gap(px(10.)).child(ui::banner(t, ui::Tone::Warn, text).flex_1()).when(can_take, |d| d.child(outline_button(t, "take-over").child(i18n::t!("app.storage.use_here")).on_click(cx.listener(|this, _, _, cx| this.take_over(cx))))).into_any_element());
         }
         if let Some(s) = &self.store {
             let n = s.status().conflicts.len();
             if n > 0 {
-                v.push(div().flex().items_center().gap(px(10.)).child(ui::banner(t, i18n::tn!("app.storage.conflicts", n), true).flex_1()).child(outline_button(t, "show-conflicts").child(crate::app::reveal_label()).on_click(cx.listener(|this, _, _, cx| this.reveal(cx)))).into_any_element());
+                v.push(div().flex().items_center().gap(px(10.)).child(ui::banner(t, ui::Tone::Warn, i18n::tn!("app.storage.conflicts", n)).flex_1()).child(outline_button(t, "show-conflicts").child(crate::app::reveal_label()).on_click(cx.listener(|this, _, _, cx| this.reveal(cx)))).into_any_element());
             }
         }
         v
@@ -336,7 +260,7 @@ impl HuertaApp {
             .border_1()
             .border_color(t.border)
             .bg(t.surface)
-            .child(div().flex().items_center().justify_center().size(px(30.)).rounded(px(8.)).bg(if task.kind == TaskKind::Water { t.rain_soft } else { t.accent_soft }).child(icon(task_icon(task.kind), 15., if task.kind == TaskKind::Water { t.rain } else { t.accent })))
+            .child(div().flex().items_center().justify_center().size(px(30.)).rounded(px(8.)).bg(if task.kind == TaskKind::Water { t.info_soft } else { t.accent_soft }).child(icon(task_icon(task.kind), 15., if task.kind == TaskKind::Water { t.info } else { t.accent })))
             .child(
                 div()
                     .flex()
@@ -346,7 +270,7 @@ impl HuertaApp {
                     .gap(px(2.))
                     .child(div().flex().items_center().gap(px(8.)).child(div().text_size(px(14.)).font_weight(FontWeight::MEDIUM).child(format!("{} · {}", mi_huerta_cli::task_label(task.kind), task.name))).child(chip(when, if late { t.danger } else { t.ink_muted }, if late { t.danger_soft } else { t.raised }))) // i18n-ok: separator
                     .child(div().text_size(px(11.)).text_color(t.ink_muted).child(meta.join(" · "))) // i18n-ok: separator
-                    .children(rain.map(|r| div().text_size(px(11.)).text_color(t.rain).child(r))),
+                    .children(rain.map(|r| div().text_size(px(11.)).text_color(t.info).child(r))),
             )
             .child(filled_button(t, ("done", ix), t.accent).child(i18n::t!("app.today.done")).on_click(cx.listener(move |this, _, _, cx| this.mark(k1, id1.clone(), Action::Done, cx))))
             .child(outline_button(t, ("snooze", ix)).child(i18n::t!("app.today.snooze")).on_click(cx.listener(move |this, _, _, cx| this.mark(k2, id2.clone(), Action::Snoozed { until: huerta::today() + chrono::Duration::days(1) }, cx))))
@@ -441,9 +365,9 @@ impl HuertaApp {
             .px(px(14.))
             .py(px(10.))
             .rounded(px(10.))
-            .bg(t.rain_soft)
+            .bg(t.info_soft)
             .text_size(px(12.))
-            .child(icon(IconName::Info, 14., t.rain))
+            .child(icon(IconName::Info, 14., t.info))
             .child(div().flex_1().min_w(px(200.)).child(info))
             .children(last.map(|l| div().text_color(t.ink_muted).child(l)))
             .child(div().w(px(90.)).child(Input::new(&self.forms.rain_mm)))
@@ -817,7 +741,7 @@ impl HuertaApp {
             .child(section_title(t, i18n::t!("app.settings.weather").to_uppercase()))
             .child(div().text_size(px(13.)).line_height(px(19.)).child(i18n::t!("app.settings.weather_body")))
             .child(yes_no(t, "weather", w.enabled, cx, |this, on, cx| this.set_weather(on, cx)))
-            .child(ui::banner(t, i18n::t!("app.settings.weather_privacy"), false))
+            .child(ui::banner(t, ui::Tone::Neutral, i18n::t!("app.settings.weather_privacy")))
             .child(labelled(t, i18n::t!("app.settings.what_is_sent"), div().text_size(px(11.)).font_family("Menlo").text_color(t.ink_muted).child(url))) // i18n-ok: font name
             .when(w.enabled, |d| {
                 d.child(div().text_size(px(12.)).child(if w.place.is_empty() { i18n::t!("app.settings.no_place") } else { i18n::t!("app.settings.place_is", place = w.place) }))
