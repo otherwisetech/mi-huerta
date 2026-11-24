@@ -21,6 +21,7 @@ serde_json.workspace = true
 chrono.workspace = true
 otherwise-link.workspace = true
 otherwise-agent-panel.workspace = true
+otherwise-ui.workspace = true
 gpui.workspace = true
 gpui_platform.workspace = true
 gpui-component.workspace = true

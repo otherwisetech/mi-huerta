@@ -18,8 +18,8 @@ use std::sync::Mutex;
 actions!(mi_huerta, [Quit, OpenWebsite, OpenVcity, OpenSource]);
 
 pub(crate) const APP_NAME: &str = "Mi Huerta"; // i18n-ok: product name
-pub(crate) const COMPANY: &str = "Otherwise Technologies LLC"; // i18n-ok: company name
-pub(crate) const COMPANY_URL: &str = "https://otherwisetech.com";
+pub(crate) const COMPANY: &str = otherwise_ui::COMPANY;
+pub(crate) const COMPANY_URL: &str = otherwise_ui::COMPANY_URL;
 /// The invitation to Vcity (About, Help): campaign tags only, nothing about the user.
 pub(crate) const VCITY_URL: &str = "https://vcity.io/?utm_source=mi-huerta&utm_medium=app&utm_campaign=otherwise-apps";
 pub(crate) const REPO_URL: &str = "https://github.com/otherwisetech/mi-huerta";
@@ -93,8 +93,6 @@ fn set_dock_icon() {
     }
 }
 
-const FONTS: [&[u8]; 3] = [include_bytes!("../assets/fonts/Inter-Regular.ttf"), include_bytes!("../assets/fonts/Inter-Medium.ttf"), include_bytes!("../assets/fonts/Inter-SemiBold.ttf")];
-
 /// `otherwise-mi-huerta://` links waiting for the window.
 static INBOUND: Mutex<Vec<Link>> = Mutex::new(Vec::new());
 
@@ -140,12 +138,10 @@ fn main() {
     let application = gpui_platform::application().with_assets(AppAssets);
     application.on_open_urls(|urls| push_inbound(urls.iter().filter_map(|u| Link::parse(u).ok())));
     application.run(move |cx| {
-        if let Err(e) = cx.text_system().add_fonts(FONTS.iter().map(|f| Cow::Borrowed(*f)).collect()) {
-            eprintln!("fonts: {e}"); // i18n-ok: developer diagnostic
-        }
         #[cfg(target_os = "macos")]
         set_dock_icon();
         gpui_component::init(cx);
+        otherwise_ui::init(otherwise_ui::accents::MI_HUERTA, cx);
         theme::apply(local.theme.as_deref(), None, cx);
         app::bind_keys(cx);
         cx.bind_keys([KeyBinding::new("secondary-q", Quit, None)]);

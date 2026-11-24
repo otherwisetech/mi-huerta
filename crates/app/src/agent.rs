@@ -131,9 +131,9 @@ pub fn style(t: &Tokens) -> PanelStyle {
         ok: t.ok,
         note: t.warn,
         note_soft: t.warn_soft,
-        terminal_bg: if t.dark { rgb(0x161714).into() } else { rgb(0xFFFFFF).into() },
+        terminal_bg: if t.dark { rgb(0x161514).into() } else { rgb(0xFFFFFF).into() },
         terminal_fg: t.ink,
-        mono_font: if cfg!(windows) { "Consolas".into() } else { "Menlo".into() }, // i18n-ok: font name
+        mono_font: otherwise_ui::tokens::MONO.into(),
         dark: t.dark,
     }
 }

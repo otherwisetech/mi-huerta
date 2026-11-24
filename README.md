@@ -90,5 +90,5 @@ Contributions are welcome, especially catalogue data with good sources.
 ## License
 
 Licensed under either of [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE) at your option.
-Catalogue values are cited from their publishers (see `data/sources.toml`). The Inter font is
-under the SIL Open Font License (`crates/app/assets/fonts/Inter-OFL.txt`).
+Catalogue values are cited from their publishers (see `data/sources.toml`). The Inter font
+(SIL Open Font License) comes with otherwise-ui.
