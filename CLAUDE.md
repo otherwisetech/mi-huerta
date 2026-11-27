@@ -53,3 +53,6 @@ python3 script/make-icon.py       # regenerate icons (Pillow)
 Bump `workspace.package.version`, then merge to main. Then either tag `vX.Y.Z` (the release
 workflow builds macOS, Linux and Windows), or bundle locally and run
 `gh release create vX.Y.Z <zip> <zip>.sha256`.
+
+Notes, file names and issue forms follow the family's release rules: otherwisetech/otherwise-apps
+`docs/releases.md` (how the Hub discovers and verifies releases).
